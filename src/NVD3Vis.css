@@ -26,7 +26,7 @@
 }
 
 .superset-legacy-chart-nvd3-bar {
-  overflow-x: auto !important;
+  overflow-x: scroll;
 }
 
 .superset-legacy-chart-nvd3-bar svg.nvd3-svg {

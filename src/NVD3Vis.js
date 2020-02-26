@@ -856,6 +856,9 @@ function nvd3Vis(element, props) {
         }
       }
 
+      const maxScroll = d3Element.node().scrollWidth;
+      d3Element.node().scrollBy(maxScroll, 0);
+
       // render chart
       chart.margin(margins);
       svg
@@ -872,6 +875,8 @@ function nvd3Vis(element, props) {
         'scroll',
         throttle(() => hideTooltips(false), 250),
       );
+      
+      d3Element.node().scrollBy(maxScroll, 0);
 
       // The below code should be run AFTER rendering because chart is updated in call()
       if (isTimeSeries && activeAnnotationLayers.length > 0) {
@@ -1137,10 +1142,6 @@ function nvd3Vis(element, props) {
         });
       }
     }
-
-    // const maxScroll = d3Element.node().scrollWidth;
-    d3Element.node().scrollBy(1000, 0);
-
     wrapTooltip(chart, maxWidth);
 
     return chart;

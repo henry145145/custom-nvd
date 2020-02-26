@@ -764,14 +764,17 @@ function nvd3Vis(element, props) {
         if (chart && chart.tooltip) {
           chart.tooltip.classes([generateTooltipClassName(chartId)]);
         }
-      } // render chart
+      }
 
+      const maxScroll = d3Element.node().scrollWidth;
+      d3Element.node().scrollBy(maxScroll, 0); // render chart
 
       chart.margin(margins);
       svg.datum(data).transition().duration(500).attr('width', width).attr('height', height).call(chart); // On scroll, hide (not remove) tooltips so they can reappear on hover.
       // Throttle to only 4x/second.
 
-      window.addEventListener('scroll', throttle(() => hideTooltips(false), 250)); // The below code should be run AFTER rendering because chart is updated in call()
+      window.addEventListener('scroll', throttle(() => hideTooltips(false), 250));
+      d3Element.node().scrollBy(maxScroll, 0); // The below code should be run AFTER rendering because chart is updated in call()
 
       if (isTimeSeries && activeAnnotationLayers.length > 0) {
         // Formula annotations
@@ -943,10 +946,8 @@ function nvd3Vis(element, props) {
           d3.selectAll('.slice_container .nv-timeseries-annotation-layer.hideLinetrue').style('stroke-width', 0);
         });
       }
-    } // const maxScroll = d3Element.node().scrollWidth;
+    }
 
-
-    d3Element.node().scrollBy(1000, 0);
     wrapTooltip(chart, maxWidth);
     return chart;
   }; // Remove tooltips before rendering chart, if the chart is being re-rendered sometimes
