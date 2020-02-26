@@ -750,6 +750,10 @@ function nvd3Vis(element, props) {
       });
     }
 
+    console.log('hehehe');
+    d3Element.node().scrollBy(300, 0);
+    svg.node().scrollBy(300, 0);
+
     if (chart.yAxis !== undefined || chart.yAxis2 !== undefined) {
       // Hack to adjust y axis left margin to accommodate long numbers
       const marginPad = Math.ceil(Math.min(maxWidth * (isExplore ? 0.01 : 0.03), MAX_MARGIN_PAD));
@@ -1127,7 +1131,6 @@ function nvd3Vis(element, props) {
 
         // Display styles for Time Series Annotations
         chart.dispatch.on('renderEnd.timeseries-annotation', () => {
-          console.log('hehehe');
           d3.selectAll('.slice_container .nv-timeseries-annotation-layer.showMarkerstrue .nv-point')
             .style('stroke-opacity', 1)
             .style('fill-opacity', 1);
@@ -1135,8 +1138,6 @@ function nvd3Vis(element, props) {
             'stroke-width',
             0,
           );
-          d3Element.node().scrollBy(300, 0);
-          svg.node().scrollBy(300, 0);
         });
       }
     }
