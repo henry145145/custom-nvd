@@ -640,6 +640,9 @@ function nvd3Vis(element, props) {
       .attr('height', height)
       .attr('width', width)
       .call(chart);
+    const maxScroll = svg.node().scrollWidth;
+    const test = d3Element.select(`.superset-legacy-chart-nvd3-${kebabCase(vizType)}`);
+    test.node().scrollBy(maxScroll,0);
 
     // For log scale, only show 1, 10, 100, 1000, ...
     if (yIsLogScale) {
