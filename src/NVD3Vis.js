@@ -1127,6 +1127,7 @@ function nvd3Vis(element, props) {
 
         // Display styles for Time Series Annotations
         chart.dispatch.on('renderEnd.timeseries-annotation', () => {
+          console.log('hehehe');
           d3.selectAll('.slice_container .nv-timeseries-annotation-layer.showMarkerstrue .nv-point')
             .style('stroke-opacity', 1)
             .style('fill-opacity', 1);
@@ -1134,14 +1135,11 @@ function nvd3Vis(element, props) {
             'stroke-width',
             0,
           );
+          d3Element.node().scrollBy(300, 0);
+          svg.node().scrollBy(300, 0);
         });
       }
     }
-    const sliceContainer = d3.selectAll('.slice_container');
-    const maxScroll = sliceContainer.node().scrollWidth;
-    console.log(maxScroll);
-    d3Element.node().scrollBy(maxScroll, 0);
-    d3Element.node().scrollBy(2 * maxScroll, 0);
     wrapTooltip(chart, maxWidth);
 
     return chart;
