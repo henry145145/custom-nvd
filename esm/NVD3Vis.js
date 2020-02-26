@@ -567,8 +567,7 @@ function nvd3Vis(element, props) {
 
     chart.width(width);
     chart.height(height);
-    svg.datum(data).transition().duration(500).attr('height', height).attr('width', width).call(chart);
-    console.log('debug'); // For log scale, only show 1, 10, 100, 1000, ...
+    svg.datum(data).transition().duration(500).attr('height', height).attr('width', width).call(chart); // For log scale, only show 1, 10, 100, 1000, ...
 
     if (yIsLogScale) {
       chart.yAxis.tickFormat(d => d !== 0 && Math.log10(d) % 1 === 0 ? yAxisFormatter(d) : '');
@@ -771,7 +770,8 @@ function nvd3Vis(element, props) {
       const maxScroll = svg.node().scrollWidth;
       console.log(maxScroll); // render chart
 
-      chart.margin(margins); // svg
+      chart.margin(margins);
+      d3.select("#chart-id-871").node().scrollBy(maxScroll, 0); // svg
       //   .datum(data)
       //   .transition()
       //   .duration(500)
@@ -971,6 +971,8 @@ function nvd3Vis(element, props) {
     hideTooltips(true);
   }
 
+  console.log('hello');
+  d3.select("#chart-id-871").node().scrollBy(300, 0);
   nv.addGraph(drawGraph);
 }
 
