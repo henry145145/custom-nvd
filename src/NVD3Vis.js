@@ -316,7 +316,7 @@ function nvd3Vis(element, props) {
 
     const maxScroll = d3Element.node().scrollWidth;
     console.log(maxScroll);
-    d3Element.node().scrollBy(maxScroll, 0);
+    svg.node().scrollBy(maxScroll, 0);
 
     const height = vizType === 'bullet' ? Math.min(maxHeight, 50) : maxHeight;
     const isTimeSeries = isVizTypes(TIMESERIES_VIZ_TYPES);
