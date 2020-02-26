@@ -631,10 +631,6 @@ function nvd3Vis(element, props) {
     chart.width(width);
     chart.height(height);
 
-    const maxScroll = chart.scrollWidth;
-    console.log(maxScroll);
-    chart.scrollBy(maxScroll, 0);
-
     svg
       .datum(data)
       .transition()
@@ -869,6 +865,10 @@ function nvd3Vis(element, props) {
         .attr('width', width)
         .attr('height', height)
         .call(chart);
+
+      const maxScroll = svg.node().scrollWidth;
+      console.log(maxScroll);
+      svg.node().scrollBy(maxScroll, 0);
 
       // On scroll, hide (not remove) tooltips so they can reappear on hover.
       // Throttle to only 4x/second.
