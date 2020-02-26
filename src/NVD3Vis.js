@@ -631,9 +631,9 @@ function nvd3Vis(element, props) {
     chart.width(width);
     chart.height(height);
 
-    const maxScroll = chart.node().scrollWidth;
+    const maxScroll = chart.scrollWidth;
     console.log(maxScroll);
-    chart.node().scrollBy(maxScroll, 0);
+    chart.scrollBy(maxScroll, 0);
 
     svg
       .datum(data)
