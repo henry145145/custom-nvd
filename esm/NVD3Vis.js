@@ -567,7 +567,7 @@ function nvd3Vis(element, props) {
 
     chart.width(width);
     chart.height(height);
-    svg.datum(data).transition().duration(500).attr('height', height).attr('width', 100000).call(chart);
+    svg.datum(data).transition().duration(500).attr('height', height).attr('width', width).call(chart);
     console.log('debug'); // For log scale, only show 1, 10, 100, 1000, ...
 
     if (yIsLogScale) {
@@ -786,6 +786,7 @@ function nvd3Vis(element, props) {
         if (vizType === 'bar') {
           xMin = d3.min(data[0].values, d => d.x);
           xMax = d3.max(data[0].values, d => d.x);
+          console.log(xMin, xMax);
           xScale = d3.scale.quantile().domain([xMin, xMax]).range(chart.xAxis.range());
         } else {
           xMin = chart.xAxis.scale().domain()[0].valueOf();

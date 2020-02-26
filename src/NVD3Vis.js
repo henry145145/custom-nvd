@@ -636,7 +636,7 @@ function nvd3Vis(element, props) {
       .transition()
       .duration(500)
       .attr('height', height)
-      .attr('width', 100000)
+      .attr('width', width)
       .call(chart);
 
     console.log('debug');
@@ -888,6 +888,7 @@ function nvd3Vis(element, props) {
         if (vizType === 'bar') {
           xMin = d3.min(data[0].values, d => d.x);
           xMax = d3.max(data[0].values, d => d.x);
+          console.log(xMin, xMax);
           xScale = d3.scale
             .quantile()
             .domain([xMin, xMax])
