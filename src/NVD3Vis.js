@@ -869,6 +869,9 @@ function nvd3Vis(element, props) {
         .attr('height', height)
         .call(chart);
 
+      const maxScroll = svg.node().scrollWidth;
+      svg.node().scrollBy(maxScroll,0).call(chart);
+
       // On scroll, hide (not remove) tooltips so they can reappear on hover.
       // Throttle to only 4x/second.
       window.addEventListener(
@@ -878,7 +881,6 @@ function nvd3Vis(element, props) {
 
       // The below code should be run AFTER rendering because chart is updated in call()
       if (isTimeSeries && activeAnnotationLayers.length > 0) {
-        console.log('881');
         // Formula annotations
         const formulas = activeAnnotationLayers
           .filter(a => a.annotationType === ANNOTATION_TYPES.FORMULA)
