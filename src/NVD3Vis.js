@@ -631,14 +631,13 @@ function nvd3Vis(element, props) {
     chart.width(width);
     chart.height(height);
 
-    // svg
-    //   .datum(data)
-    //   .transition()
-    //   .duration(500)
-    //   .attr('height', height)
-    //   .attr('width', width)
-    //   .call(chart);
-    const maxScroll = svg.node().scrollWidth;
+    svg
+      .datum(data)
+      .transition()
+      .duration(500)
+      .attr('height', height)
+      .attr('width', width)
+      .call(chart);
 
     // For log scale, only show 1, 10, 100, 1000, ...
     if (yIsLogScale) {
@@ -1139,7 +1138,13 @@ function nvd3Vis(element, props) {
       }
     }
     wrapTooltip(chart, maxWidth);
-
+    console.log(chart);
+    const maxScroll = svg.node().scrollWidth;
+    const parent = d3.create("div");
+    const body = parent.append("div")
+        .style("overflow-x", "scroll")
+        .style("-webkit-overflow-scrolling", "touch");
+    body.node().scrollBy(maxScroll, 0);
     return chart;
   };
 

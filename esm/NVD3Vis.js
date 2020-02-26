@@ -566,15 +566,8 @@ function nvd3Vis(element, props) {
 
 
     chart.width(width);
-    chart.height(height); // svg
-    //   .datum(data)
-    //   .transition()
-    //   .duration(500)
-    //   .attr('height', height)
-    //   .attr('width', width)
-    //   .call(chart);
-
-    const maxScroll = svg.node().scrollWidth; // For log scale, only show 1, 10, 100, 1000, ...
+    chart.height(height);
+    svg.datum(data).transition().duration(500).attr('height', height).attr('width', width).call(chart); // For log scale, only show 1, 10, 100, 1000, ...
 
     if (yIsLogScale) {
       chart.yAxis.tickFormat(d => d !== 0 && Math.log10(d) % 1 === 0 ? yAxisFormatter(d) : '');
@@ -953,6 +946,11 @@ function nvd3Vis(element, props) {
     }
 
     wrapTooltip(chart, maxWidth);
+    console.log(chart);
+    const maxScroll = svg.node().scrollWidth;
+    const parent = d3.create("div");
+    const body = parent.append("div").style("overflow-x", "scroll").style("-webkit-overflow-scrolling", "touch");
+    body.node().scrollBy(maxScroll, 0);
     return chart;
   }; // Remove tooltips before rendering chart, if the chart is being re-rendered sometimes
   // there are left over tooltips in the dom,
