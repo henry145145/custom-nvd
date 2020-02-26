@@ -753,6 +753,7 @@ function nvd3Vis(element, props) {
     }
 
     if (chart.yAxis !== undefined || chart.yAxis2 !== undefined) {
+      console.log('756');
       // Hack to adjust y axis left margin to accommodate long numbers
       const marginPad = Math.ceil(Math.min(maxWidth * (isExplore ? 0.01 : 0.03), MAX_MARGIN_PAD));
       // Hack to adjust margins to accommodate long axis tick labels.
@@ -877,6 +878,7 @@ function nvd3Vis(element, props) {
 
       // The below code should be run AFTER rendering because chart is updated in call()
       if (isTimeSeries && activeAnnotationLayers.length > 0) {
+        console.log('881');
         // Formula annotations
         const formulas = activeAnnotationLayers
           .filter(a => a.annotationType === ANNOTATION_TYPES.FORMULA)
@@ -888,7 +890,6 @@ function nvd3Vis(element, props) {
         if (vizType === 'bar') {
           xMin = d3.min(data[0].values, d => d.x);
           xMax = d3.max(data[0].values, d => d.x);
-          console.log(xMin, xMax);
           xScale = d3.scale
             .quantile()
             .domain([xMin, xMax])
@@ -902,6 +903,7 @@ function nvd3Vis(element, props) {
             .scale()
             .domain()[1]
             .valueOf();
+          console.log(xMin, xMax);
           if (chart.xScale) {
             xScale = chart.xScale();
           } else if (chart.xAxis.scale) {
