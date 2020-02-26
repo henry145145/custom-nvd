@@ -333,8 +333,6 @@ function nvd3Vis(element, props) {
       (showBrush === 'auto' && maxHeight >= MIN_HEIGHT_FOR_BRUSH && xTicksLayout !== '45°');
     const numberFormatter = getNumberFormatter(numberFormat);
 
-    console.log(vizType);
-
     switch (vizType) {
       case 'line':
         if (canShowBrush) {
@@ -641,8 +639,8 @@ function nvd3Vis(element, props) {
       .attr('width', width)
       .call(chart);
     const maxScroll = svg.node().scrollWidth;
-    const test = d3Element.select(`.superset-legacy-chart-nvd3-${kebabCase(vizType)}`);
-    test.node().scrollBy(maxScroll,0);
+    console.log(d3Element);
+    d3Element.node().scrollBy(maxScroll,0);
 
     // For log scale, only show 1, 10, 100, 1000, ...
     if (yIsLogScale) {
