@@ -1137,10 +1137,9 @@ function nvd3Vis(element, props) {
         });
       }
     }
-    console.log(d3Element);
-    const maxScroll = d3Element.node().scrollWidth;
-    console.log(maxScroll);
-    d3Element.node().scrollBy(maxScroll, 0);
+
+    // const maxScroll = d3Element.node().scrollWidth;
+    d3Element.node().scrollBy(1000, 0);
 
     wrapTooltip(chart, maxWidth);
 
