@@ -300,7 +300,6 @@ function nvd3Vis(element, props) {
         chart.width(width);
         chart.xAxis.showMaxMin(false);
         chart.stacked(isBarStacked);
-        console.log(chart);
         break;
 
       case 'dist_bar':
@@ -765,9 +764,7 @@ function nvd3Vis(element, props) {
         if (chart && chart.tooltip) {
           chart.tooltip.classes([generateTooltipClassName(chartId)]);
         }
-      } // const maxScroll = d3Element.node().scrollWidth;
-      // d3Element.node().scrollBy(maxScroll, 0);
-      // render chart
+      } // render chart
 
 
       chart.margin(margins);
@@ -948,6 +945,11 @@ function nvd3Vis(element, props) {
       }
     }
 
+    const sliceContainer = d3.selectAll('.slice_container');
+    const maxScroll = sliceContainer.node().scrollWidth;
+    console.log(maxScroll);
+    d3Element.node().scrollBy(maxScroll, 0);
+    d3Element.node().scrollBy(2 * maxScroll, 0);
     wrapTooltip(chart, maxWidth);
     return chart;
   }; // Remove tooltips before rendering chart, if the chart is being re-rendered sometimes
