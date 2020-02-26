@@ -866,10 +866,6 @@ function nvd3Vis(element, props) {
         .attr('height', height)
         .call(chart);
 
-      const maxScroll = svg.node().scrollWidth;
-      console.log(maxScroll);
-      svg.node().scrollBy(maxScroll, 0);
-
       // On scroll, hide (not remove) tooltips so they can reappear on hover.
       // Throttle to only 4x/second.
       window.addEventListener(
@@ -1141,6 +1137,10 @@ function nvd3Vis(element, props) {
         });
       }
     }
+    console.log(d3Element);
+    const maxScroll = d3Element.node().scrollWidth;
+    console.log(maxScroll);
+    d3Element.node().scrollBy(maxScroll, 0);
 
     wrapTooltip(chart, maxWidth);
 
