@@ -631,16 +631,14 @@ function nvd3Vis(element, props) {
     chart.width(width);
     chart.height(height);
 
-    svg
-      .datum(data)
-      .transition()
-      .duration(500)
-      .attr('height', height)
-      .attr('width', width)
-      .call(chart);
+    // svg
+    //   .datum(data)
+    //   .transition()
+    //   .duration(500)
+    //   .attr('height', height)
+    //   .attr('width', width)
+    //   .call(chart);
     const maxScroll = svg.node().scrollWidth;
-    console.log(d3Element);
-    d3Element.node().scrollBy(maxScroll,0);
 
     // For log scale, only show 1, 10, 100, 1000, ...
     if (yIsLogScale) {
