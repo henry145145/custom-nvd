@@ -313,11 +313,6 @@ function nvd3Vis(element, props) {
     if (svg.empty()) {
       svg = d3Element.append('svg');
     }
-
-    const maxScroll = d3Element.node().scrollWidth;
-    console.log(maxScroll);
-    svg.node().scrollBy(maxScroll, 0);
-
     const height = vizType === 'bullet' ? Math.min(maxHeight, 50) : maxHeight;
     const isTimeSeries = isVizTypes(TIMESERIES_VIZ_TYPES);
 
@@ -635,6 +630,10 @@ function nvd3Vis(element, props) {
     // This is needed for correct chart dimensions if a chart is rendered in a hidden container
     chart.width(width);
     chart.height(height);
+
+    const maxScroll = chart.node().scrollWidth;
+    console.log(maxScroll);
+    chart.node().scrollBy(maxScroll, 0);
 
     svg
       .datum(data)

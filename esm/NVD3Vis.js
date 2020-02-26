@@ -241,9 +241,6 @@ function nvd3Vis(element, props) {
       svg = d3Element.append('svg');
     }
 
-    const maxScroll = d3Element.node().scrollWidth;
-    console.log(maxScroll);
-    svg.node().scrollBy(maxScroll, 0);
     const height = vizType === 'bullet' ? Math.min(maxHeight, 50) : maxHeight;
     const isTimeSeries = isVizTypes(TIMESERIES_VIZ_TYPES); // Handling xAxis ticks settings
 
@@ -570,6 +567,9 @@ function nvd3Vis(element, props) {
 
     chart.width(width);
     chart.height(height);
+    const maxScroll = chart.node().scrollWidth;
+    console.log(maxScroll);
+    chart.node().scrollBy(maxScroll, 0);
     svg.datum(data).transition().duration(500).attr('height', height).attr('width', width).call(chart); // For log scale, only show 1, 10, 100, 1000, ...
 
     if (yIsLogScale) {
