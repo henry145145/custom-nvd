@@ -375,6 +375,7 @@ function nvd3Vis(element, props) {
         chart.width(width);
         chart.xAxis.showMaxMin(false);
         chart.stacked(isBarStacked);
+        console.log(chart);
         break;
 
       case 'dist_bar':
@@ -856,8 +857,8 @@ function nvd3Vis(element, props) {
         }
       }
 
-      const maxScroll = d3Element.node().scrollWidth;
-      d3Element.node().scrollBy(maxScroll, 0);
+      // const maxScroll = d3Element.node().scrollWidth;
+      // d3Element.node().scrollBy(maxScroll, 0);
 
       // render chart
       chart.margin(margins);
@@ -875,8 +876,6 @@ function nvd3Vis(element, props) {
         'scroll',
         throttle(() => hideTooltips(false), 250),
       );
-      
-      d3Element.node().scrollBy(maxScroll, 0);
 
       // The below code should be run AFTER rendering because chart is updated in call()
       if (isTimeSeries && activeAnnotationLayers.length > 0) {

@@ -300,6 +300,7 @@ function nvd3Vis(element, props) {
         chart.width(width);
         chart.xAxis.showMaxMin(false);
         chart.stacked(isBarStacked);
+        console.log(chart);
         break;
 
       case 'dist_bar':
@@ -764,17 +765,16 @@ function nvd3Vis(element, props) {
         if (chart && chart.tooltip) {
           chart.tooltip.classes([generateTooltipClassName(chartId)]);
         }
-      }
+      } // const maxScroll = d3Element.node().scrollWidth;
+      // d3Element.node().scrollBy(maxScroll, 0);
+      // render chart
 
-      const maxScroll = d3Element.node().scrollWidth;
-      d3Element.node().scrollBy(maxScroll, 0); // render chart
 
       chart.margin(margins);
       svg.datum(data).transition().duration(500).attr('width', width).attr('height', height).call(chart); // On scroll, hide (not remove) tooltips so they can reappear on hover.
       // Throttle to only 4x/second.
 
-      window.addEventListener('scroll', throttle(() => hideTooltips(false), 250));
-      d3Element.node().scrollBy(maxScroll, 0); // The below code should be run AFTER rendering because chart is updated in call()
+      window.addEventListener('scroll', throttle(() => hideTooltips(false), 250)); // The below code should be run AFTER rendering because chart is updated in call()
 
       if (isTimeSeries && activeAnnotationLayers.length > 0) {
         // Formula annotations
