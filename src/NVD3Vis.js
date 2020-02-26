@@ -636,8 +636,10 @@ function nvd3Vis(element, props) {
       .transition()
       .duration(500)
       .attr('height', height)
-      .attr('width', width)
+      .attr('width', 100000)
       .call(chart);
+
+    console.log('debug');
 
     // For log scale, only show 1, 10, 100, 1000, ...
     if (yIsLogScale) {
@@ -749,10 +751,6 @@ function nvd3Vis(element, props) {
         }, 10);
       });
     }
-
-    console.log('hehehe');
-    d3Element.node().scrollBy(300, 0);
-    svg.node().scrollBy(300, 0);
 
     if (chart.yAxis !== undefined || chart.yAxis2 !== undefined) {
       // Hack to adjust y axis left margin to accommodate long numbers

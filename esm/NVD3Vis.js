@@ -567,7 +567,8 @@ function nvd3Vis(element, props) {
 
     chart.width(width);
     chart.height(height);
-    svg.datum(data).transition().duration(500).attr('height', height).attr('width', width).call(chart); // For log scale, only show 1, 10, 100, 1000, ...
+    svg.datum(data).transition().duration(500).attr('height', height).attr('width', 100000).call(chart);
+    console.log('debug'); // For log scale, only show 1, 10, 100, 1000, ...
 
     if (yIsLogScale) {
       chart.yAxis.tickFormat(d => d !== 0 && Math.log10(d) % 1 === 0 ? yAxisFormatter(d) : '');
@@ -660,10 +661,6 @@ function nvd3Vis(element, props) {
         }, 10);
       });
     }
-
-    console.log('hehehe');
-    d3Element.node().scrollBy(300, 0);
-    svg.node().scrollBy(300, 0);
 
     if (chart.yAxis !== undefined || chart.yAxis2 !== undefined) {
       // Hack to adjust y axis left margin to accommodate long numbers
