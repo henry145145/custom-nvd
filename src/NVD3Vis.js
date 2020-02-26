@@ -1138,13 +1138,9 @@ function nvd3Vis(element, props) {
       }
     }
     wrapTooltip(chart, maxWidth);
-    console.log(chart);
-    const maxScroll = svg.node().scrollWidth;
-    const parent = d3.create("div");
-    const body = parent.append("div")
-        .style("overflow-x", "scroll")
-        .style("-webkit-overflow-scrolling", "touch");
-    body.node().scrollBy(maxScroll, 0);
+    console.log(maxWidth);
+    d3.select('.slice_container').node().scrollBy(maxWidth,0);
+
     return chart;
   };
 
