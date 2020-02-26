@@ -864,15 +864,15 @@ function nvd3Vis(element, props) {
 
       // render chart
       chart.margin(margins);
-      svg
-        .datum(data)
-        .transition()
-        .duration(500)
-        .attr('width', width)
-        .attr('height', height)
-        .call(chart)
-        .node()
-        .scrollBy(maxScroll, 0);
+      // svg
+      //   .datum(data)
+      //   .transition()
+      //   .duration(500)
+      //   .attr('width', width)
+      //   .attr('height', height)
+      //   .call(chart)
+      //   .node()
+      //   .scrollBy(maxScroll, 0);
 
       // On scroll, hide (not remove) tooltips so they can reappear on hover.
       // Throttle to only 4x/second.
