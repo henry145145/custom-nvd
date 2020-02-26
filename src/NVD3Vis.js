@@ -333,6 +333,8 @@ function nvd3Vis(element, props) {
       (showBrush === 'auto' && maxHeight >= MIN_HEIGHT_FOR_BRUSH && xTicksLayout !== '45°');
     const numberFormatter = getNumberFormatter(numberFormat);
 
+    console.log(vizType);
+
     switch (vizType) {
       case 'line':
         if (canShowBrush) {
@@ -751,7 +753,6 @@ function nvd3Vis(element, props) {
     }
 
     if (chart.yAxis !== undefined || chart.yAxis2 !== undefined) {
-      console.log('756');
       // Hack to adjust y axis left margin to accommodate long numbers
       const marginPad = Math.ceil(Math.min(maxWidth * (isExplore ? 0.01 : 0.03), MAX_MARGIN_PAD));
       // Hack to adjust margins to accommodate long axis tick labels.
@@ -857,22 +858,15 @@ function nvd3Vis(element, props) {
         }
       }
 
-      const maxScroll = svg.node().scrollWidth;
-      console.log(maxScroll);
-
       // render chart
       chart.margin(margins);
-
-      d3.select("#chart-id-871").node().scrollBy(maxScroll,0);
-      // svg
-      //   .datum(data)
-      //   .transition()
-      //   .duration(500)
-      //   .attr('width', width)
-      //   .attr('height', height)
-      //   .call(chart)
-      //   .node()
-      //   .scrollBy(maxScroll, 0);
+      svg
+        .datum(data)
+        .transition()
+        .duration(500)
+        .attr('width', width)
+        .attr('height', height)
+        .call(chart);
 
       // On scroll, hide (not remove) tooltips so they can reappear on hover.
       // Throttle to only 4x/second.
@@ -907,7 +901,6 @@ function nvd3Vis(element, props) {
             .scale()
             .domain()[1]
             .valueOf();
-          console.log(xMin, xMax);
           if (chart.xScale) {
             xScale = chart.xScale();
           } else if (chart.xAxis.scale) {
@@ -1159,8 +1152,6 @@ function nvd3Vis(element, props) {
   } else {
     hideTooltips(true);
   }
-  console.log('hello');
-  d3.select("#chart-id-871").node().scrollBy(300,0);
 
   nv.addGraph(drawGraph);
 }

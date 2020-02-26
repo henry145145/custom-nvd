@@ -254,6 +254,7 @@ function nvd3Vis(element, props) {
 
     const canShowBrush = isTruthy(showBrush) || showBrush === 'auto' && maxHeight >= MIN_HEIGHT_FOR_BRUSH && xTicksLayout !== '45°';
     const numberFormatter = getNumberFormatter(numberFormat);
+    console.log(vizType);
 
     switch (vizType) {
       case 'line':
@@ -662,8 +663,7 @@ function nvd3Vis(element, props) {
     }
 
     if (chart.yAxis !== undefined || chart.yAxis2 !== undefined) {
-      console.log('756'); // Hack to adjust y axis left margin to accommodate long numbers
-
+      // Hack to adjust y axis left margin to accommodate long numbers
       const marginPad = Math.ceil(Math.min(maxWidth * (isExplore ? 0.01 : 0.03), MAX_MARGIN_PAD)); // Hack to adjust margins to accommodate long axis tick labels.
       // - has to be done only after the chart has been rendered once
       // - measure the width or height of the labels
@@ -765,22 +765,11 @@ function nvd3Vis(element, props) {
         if (chart && chart.tooltip) {
           chart.tooltip.classes([generateTooltipClassName(chartId)]);
         }
-      }
+      } // render chart
 
-      const maxScroll = svg.node().scrollWidth;
-      console.log(maxScroll); // render chart
 
       chart.margin(margins);
-      d3.select("#chart-id-871").node().scrollBy(maxScroll, 0); // svg
-      //   .datum(data)
-      //   .transition()
-      //   .duration(500)
-      //   .attr('width', width)
-      //   .attr('height', height)
-      //   .call(chart)
-      //   .node()
-      //   .scrollBy(maxScroll, 0);
-      // On scroll, hide (not remove) tooltips so they can reappear on hover.
+      svg.datum(data).transition().duration(500).attr('width', width).attr('height', height).call(chart); // On scroll, hide (not remove) tooltips so they can reappear on hover.
       // Throttle to only 4x/second.
 
       window.addEventListener('scroll', throttle(() => hideTooltips(false), 250)); // The below code should be run AFTER rendering because chart is updated in call()
@@ -801,7 +790,6 @@ function nvd3Vis(element, props) {
         } else {
           xMin = chart.xAxis.scale().domain()[0].valueOf();
           xMax = chart.xAxis.scale().domain()[1].valueOf();
-          console.log(xMin, xMax);
 
           if (chart.xScale) {
             xScale = chart.xScale();
@@ -971,8 +959,6 @@ function nvd3Vis(element, props) {
     hideTooltips(true);
   }
 
-  console.log('hello');
-  d3.select("#chart-id-871").node().scrollBy(300, 0);
   nv.addGraph(drawGraph);
 }
 
