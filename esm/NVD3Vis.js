@@ -768,14 +768,14 @@ function nvd3Vis(element, props) {
 
 
       chart.margin(margins);
-      svg.datum(data).transition().duration(500).attr('width', width).attr('height', height).call(chart);
-      console.log(width, height); // On scroll, hide (not remove) tooltips so they can reappear on hover.
+      svg.datum(data).transition().duration(500).attr('width', width).attr('height', height).attr('transform', 'translate(500,0)').call(chart); // On scroll, hide (not remove) tooltips so they can reappear on hover.
       // Throttle to only 4x/second.
 
       window.addEventListener('scroll', throttle(() => hideTooltips(false), 250)); // The below code should be run AFTER rendering because chart is updated in call()
 
       if (isTimeSeries && activeAnnotationLayers.length > 0) {
-        // Formula annotations
+        console.log('hello'); // Formula annotations
+
         const formulas = activeAnnotationLayers.filter(a => a.annotationType === ANNOTATION_TYPES.FORMULA).map(a => _extends({}, a, {
           formula: mathjs.parse(a.value)
         }));
