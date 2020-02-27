@@ -864,7 +864,7 @@ function nvd3Vis(element, props) {
         .duration(500)
         .attr('width', width)
         .attr('height', height)
-        .attr('transform', 'translate(500,0)')
+        .attr('transform', 'translate(-500,0)')
         .call(chart);
 
       // On scroll, hide (not remove) tooltips so they can reappear on hover.
@@ -876,7 +876,6 @@ function nvd3Vis(element, props) {
 
       // The below code should be run AFTER rendering because chart is updated in call()
       if (isTimeSeries && activeAnnotationLayers.length > 0) {
-        console.log('hello');
         // Formula annotations
         const formulas = activeAnnotationLayers
           .filter(a => a.annotationType === ANNOTATION_TYPES.FORMULA)
