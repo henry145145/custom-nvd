@@ -771,7 +771,10 @@ function nvd3Vis(element, props) {
       svg.datum(data).transition().duration(500).attr('width', width).attr('height', height).call(chart); // On scroll, hide (not remove) tooltips so they can reappear on hover.
       // Throttle to only 4x/second.
 
-      window.addEventListener('scroll', throttle(() => hideTooltips(false), 250)); // The below code should be run AFTER rendering because chart is updated in call()
+      window.addEventListener('scroll', throttle(() => hideTooltips(false), 250));
+      console.log(window.scrollX);
+      console.log(window.scrollY);
+      console.log(window.scrollbars); // The below code should be run AFTER rendering because chart is updated in call()
 
       if (isTimeSeries && activeAnnotationLayers.length > 0) {
         // Formula annotations
@@ -946,8 +949,6 @@ function nvd3Vis(element, props) {
     }
 
     wrapTooltip(chart, maxWidth);
-    console.log(maxWidth);
-    d3.select('.slice_container').node().scrollBy(maxWidth, 0);
     return chart;
   }; // Remove tooltips before rendering chart, if the chart is being re-rendered sometimes
   // there are left over tooltips in the dom,
