@@ -768,7 +768,7 @@ function nvd3Vis(element, props) {
 
 
       chart.margin(margins);
-      svg.datum(data).transition().duration(500).attr('transform', "translate(-" + width + ",0)").attr('width', width).attr('height', height).call(chart); // On scroll, hide (not remove) tooltips so they can reappear on hover.
+      svg.datum(data).transition().duration(500).attr('align', "center").attr('width', width).attr('height', height).call(chart); // On scroll, hide (not remove) tooltips so they can reappear on hover.
       // Throttle to only 4x/second.
 
       window.addEventListener('scroll', throttle(() => hideTooltips(false), 250)); // The below code should be run AFTER rendering because chart is updated in call()

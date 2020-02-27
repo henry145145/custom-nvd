@@ -862,7 +862,7 @@ function nvd3Vis(element, props) {
         .datum(data)
         .transition()
         .duration(500)
-        .attr('transform', `translate(-${width},0)`)
+        .attr('align', `center`)
         .attr('width', width)
         .attr('height', height)
         .call(chart);
