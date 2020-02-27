@@ -772,7 +772,7 @@ function nvd3Vis(element, props) {
       // Throttle to only 4x/second.
 
       window.addEventListener('scroll', throttle(() => hideTooltips(false), 250));
-      window.scroll(500, 0);
+      window.scrollBy(400, 0);
       console.log(window.scrollX); // The below code should be run AFTER rendering because chart is updated in call()
 
       if (isTimeSeries && activeAnnotationLayers.length > 0) {
