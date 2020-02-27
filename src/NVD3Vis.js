@@ -862,9 +862,10 @@ function nvd3Vis(element, props) {
         .datum(data)
         .transition()
         .duration(500)
-        .attr('align', `center`)
         .attr('width', width)
         .attr('height', height)
+        .node()
+        .scrollBy(200, 0)
         .call(chart);
 
       // On scroll, hide (not remove) tooltips so they can reappear on hover.
