@@ -873,9 +873,8 @@ function nvd3Vis(element, props) {
         throttle(() => hideTooltips(false), 250),
       );
 
+      window.scroll(500,0);
       console.log(window.scrollX);
-      console.log(window.scrollY);
-      console.log(window.scrollbars);
 
       // The below code should be run AFTER rendering because chart is updated in call()
       if (isTimeSeries && activeAnnotationLayers.length > 0) {
