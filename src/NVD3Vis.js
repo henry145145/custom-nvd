@@ -856,15 +856,21 @@ function nvd3Vis(element, props) {
         }
       }
 
+      const scrollTween = () =>{
+        return function() {
+          return function() { scrollTo(-500, 0); };
+        };
+      };
+
       // render chart
       chart.margin(margins);
       svg
         .datum(data)
         .transition()
         .duration(500)
-        .tween('scroll',scrollTo(300,0))
         .attr('width', width)
         .attr('height', height)
+        .tween('scroll', scrollTween())
         .call(chart);
 
       // On scroll, hide (not remove) tooltips so they can reappear on hover.

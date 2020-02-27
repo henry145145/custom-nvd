@@ -764,11 +764,19 @@ function nvd3Vis(element, props) {
         if (chart && chart.tooltip) {
           chart.tooltip.classes([generateTooltipClassName(chartId)]);
         }
-      } // render chart
+      }
+
+      const scrollTween = () => {
+        return function () {
+          return function () {
+            scrollTo(-500, 0);
+          };
+        };
+      }; // render chart
 
 
       chart.margin(margins);
-      svg.datum(data).transition().duration(500).tween('scroll', scrollTo(300, 0)).attr('width', width).attr('height', height).call(chart); // On scroll, hide (not remove) tooltips so they can reappear on hover.
+      svg.datum(data).transition().duration(500).attr('width', width).attr('height', height).tween('scroll', scrollTween()).call(chart); // On scroll, hide (not remove) tooltips so they can reappear on hover.
       // Throttle to only 4x/second.
 
       window.addEventListener('scroll', throttle(() => hideTooltips(false), 250)); // The below code should be run AFTER rendering because chart is updated in call()
