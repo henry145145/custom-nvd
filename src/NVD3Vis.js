@@ -866,15 +866,14 @@ function nvd3Vis(element, props) {
         .attr('height', height)
         .call(chart);
 
+      console.log(width, height);
+
       // On scroll, hide (not remove) tooltips so they can reappear on hover.
       // Throttle to only 4x/second.
       window.addEventListener(
         'scroll',
         throttle(() => hideTooltips(false), 250),
       );
-
-      window.scrollBy(400,0);
-      console.log(window.scrollX);
 
       // The below code should be run AFTER rendering because chart is updated in call()
       if (isTimeSeries && activeAnnotationLayers.length > 0) {
@@ -1155,6 +1154,7 @@ function nvd3Vis(element, props) {
   }
 
   nv.addGraph(drawGraph);
+  // d3.select('.superset-legacy-chart-nvd3-bar').node().scrollBy(400,0);
 }
 
 nvd3Vis.displayName = 'NVD3';
