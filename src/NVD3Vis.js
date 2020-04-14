@@ -18,7 +18,7 @@
  * under the License.
  */
 /* eslint-disable no-plusplus */
-import { kebabCase, throttle } from 'lodash';
+import { kebabCase, throttle, orderBy } from 'lodash';
 import d3 from 'd3';
 import nv from 'nvd3';
 import mathjs from 'mathjs';
@@ -456,7 +456,7 @@ function nvd3Vis(element, props) {
         break;
 
       case 'area':
-        data = _.sortBy(data,['key'], ['asc']);
+        data = orderBy(data,['key'], ['asc']);
         console.log(data);
         chart = nv.models.stackedAreaChart();
         chart.showControls(showControls);
