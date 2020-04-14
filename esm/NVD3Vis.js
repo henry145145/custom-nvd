@@ -383,6 +383,7 @@ function nvd3Vis(element, props) {
 
       case 'area':
         chart = nv.models.stackedAreaChart();
+        console.log(data);
         chart.showControls(showControls);
         chart.style(areaStackedStyle);
         chart.xScale(d3.time.scale.utc());
@@ -764,19 +765,11 @@ function nvd3Vis(element, props) {
         if (chart && chart.tooltip) {
           chart.tooltip.classes([generateTooltipClassName(chartId)]);
         }
-      }
-
-      const scrollTween = () => {
-        return function () {
-          return function () {
-            scrollTo(500, 0);
-          };
-        };
-      }; // render chart
+      } // render chart
 
 
       chart.margin(margins);
-      svg.datum(data).transition().duration(500).attr('width', width).attr('height', height).attr('viewBox', "0 0 " + width + " " + height).call(chart); // On scroll, hide (not remove) tooltips so they can reappear on hover.
+      svg.datum(data).transition().duration(500).attr('width', width).attr('height', height).call(chart); // On scroll, hide (not remove) tooltips so they can reappear on hover.
       // Throttle to only 4x/second.
 
       window.addEventListener('scroll', throttle(() => hideTooltips(false), 250)); // The below code should be run AFTER rendering because chart is updated in call()
@@ -966,7 +959,7 @@ function nvd3Vis(element, props) {
     hideTooltips(true);
   }
 
-  nv.addGraph(drawGraph); // d3.select('.superset-legacy-chart-nvd3-bar').node().scrollBy(400,0);
+  nv.addGraph(drawGraph);
 }
 
 nvd3Vis.displayName = 'NVD3';

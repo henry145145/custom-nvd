@@ -169,7 +169,7 @@ class LineMulti extends React.Component {
     const {
       queryData
     } = this.state;
-    return React.createElement(ReactNVD3, transformProps(_extends({}, this.props, {
+    return /*#__PURE__*/React.createElement(ReactNVD3, transformProps(_extends({}, this.props, {
       queryData
     })));
   }

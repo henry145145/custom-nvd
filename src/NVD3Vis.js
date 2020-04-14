@@ -457,6 +457,7 @@ function nvd3Vis(element, props) {
 
       case 'area':
         chart = nv.models.stackedAreaChart();
+        console.log(data);
         chart.showControls(showControls);
         chart.style(areaStackedStyle);
         chart.xScale(d3.time.scale.utc());
@@ -856,14 +857,6 @@ function nvd3Vis(element, props) {
         }
       }
 
-      const scrollTween = () => {
-        return function() {
-          return function() {
-            scrollTo(500, 0);
-          };
-        };
-      };
-
       // render chart
       chart.margin(margins);
       svg
@@ -872,7 +865,6 @@ function nvd3Vis(element, props) {
         .duration(500)
         .attr('width', width)
         .attr('height', height)
-        .attr('viewBox', `0 0 ${width} ${height}`)
         .call(chart);
 
       // On scroll, hide (not remove) tooltips so they can reappear on hover.
@@ -1146,6 +1138,7 @@ function nvd3Vis(element, props) {
         });
       }
     }
+
     wrapTooltip(chart, maxWidth);
 
     return chart;
@@ -1161,7 +1154,6 @@ function nvd3Vis(element, props) {
   }
 
   nv.addGraph(drawGraph);
-  // d3.select('.superset-legacy-chart-nvd3-bar').node().scrollBy(400,0);
 }
 
 nvd3Vis.displayName = 'NVD3';
