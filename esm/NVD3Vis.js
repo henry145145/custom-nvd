@@ -168,7 +168,7 @@ const NOOP = () => {};
 const formatter = getNumberFormatter();
 
 function nvd3Vis(element, props) {
-  const {
+  let {
     data,
     width: maxWidth,
     height: maxHeight,
@@ -382,8 +382,9 @@ function nvd3Vis(element, props) {
         break;
 
       case 'area':
-        chart = nv.models.stackedAreaChart();
+        data = _.sortBy(data, ['key'], ['asc']);
         console.log(data);
+        chart = nv.models.stackedAreaChart();
         chart.showControls(showControls);
         chart.style(areaStackedStyle);
         chart.xScale(d3.time.scale.utc());
