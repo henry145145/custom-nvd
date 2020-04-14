@@ -382,8 +382,13 @@ function nvd3Vis(element, props) {
         break;
 
       case 'area':
-        data = orderBy(data, ['key'], ['asc']);
-        console.log(data);
+        const checkKey = o => {
+          return Number(o.key) ? new Number(o.key) : o.key;
+        };
+
+        data = orderBy(data, function (o) {
+          return checkKey(o);
+        }, ['asc']);
         chart = nv.models.stackedAreaChart();
         chart.showControls(showControls);
         chart.style(areaStackedStyle);
